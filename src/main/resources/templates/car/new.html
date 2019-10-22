@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/car/car.css}" />
+    <title>The Golden Dome Market - SRM - Add a New car</title>
+</head>
+<body> <!--onload="document.querySelector('#carNumber').focus();"-->
+<th:block layout:fragment="content">
+    <form id="carForm" method="post" action="/car/new" enctype="multipart/form-data" th:object="${car}">
+        <fieldset>
+            <legend>New car Form</legend>
+            <div class="container" style="margin-top: 1em;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" name="id" th:value="${car.id}" />
+                        <div class="form-group">
+                            <label for="carMake">Make</label>
+                            <small><span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"
+                                         class="alert alert-danger"></span></small>
+                            <input id="carMake" name="carMake" type="text" class="form-control" th:value="${car.carMake}" required autofocus="autofocus">
+                        </div>
+                        <div class="form-group">
+                            <label for="carBrand">Brand</label>
+                            <span th:if="${#fields.hasErrors('carBrand')}" th:errors="*{carBrand}"
+                                  class="alert alert-danger"></span>
+                            <input id="carBrand" name="carBrand" type="text" class="form-control" th:value="${car.carBrand}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="plateNumber">Plate Number</label>
+                            <span th:if="${#fields.hasErrors('plateNumber')}" th:errors="*{plateNumber}"
+                                  class="alert alert-danger"></span>
+                            <input id="plateNumber" name="plateNumber" type="text" class="form-control" th:value="${car.plateNumber}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="carStatus">Status</label>
+                            <!--                            <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"-->
+                            <!--                                  class="alert alert-danger"></span>-->
+                            <select name="carStatus" id="carStatus" class="form-control" required="required">
+                                <option value="">Select a Status</option>
+                                <option th:each="stat : ${status}" th:value="${stat.id}" th:text="${stat.status}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rentPrice">Rent Price</label>
+                            <span th:if="${#fields.hasErrors('rentPrice')}" th:errors="*{rentPrice}"
+                                  class="alert alert-danger"></span>
+                            <input id="rentPrice" name="rentPrice" type="text" class="form-control" th:value="${car.rentPrice}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
+                                  class="alert alert-danger"></span>
+                            <input id="model" name="model" type="text" class="form-control" th:value="${car.model}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"
+                                  class="alert alert-danger"></span>
+                            <input id="color" name="color" type="text" class="form-control" th:value="${car.color}" required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carPic">Car Picture</label>
+                            <div class="col-md-4">
+                                <input id="carPic" name="carPic" class="input-file" type="file" required="">
+                            </div>
+                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="carPic">Car Picture</label>-->
+<!--                            <div class="col-md-4">-->
+<!--                                <input id="carPic" name="carPic" class="input-file" type="file" required="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="dateSupplied">Date supplied</label>-->
+<!--                            <span th:if="${#fields.hasErrors('dateSupplied')}" th:errors="*{dateSupplied}"-->
+<!--                                  class="alert alert-danger"></span>-->
+<!--                            <input id="dateSupplied" name="dateSupplied" type="date" class="form-control" aria-describedby="dateSuppliedHelp" th:value="${car.dateSupplied}" required="required">-->
+<!--                            <small id="dateSuppliedHelp" class="form-text text-muted">Enter a valid Date.</small>-->
+<!--                        </div>-->
+                        <div style="float:right;">
+                            <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">Reset</button>
+                            <a href="/srm/secured/car/browse" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
+                            <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Add car</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+<br/>
+<br/>
+<th:block layout:fragment="footer"/>
+
+</body>
+</html>
+

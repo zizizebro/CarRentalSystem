@@ -22,13 +22,13 @@ public class Address {
     private String state;
     @NotBlank(message = "ZipCode can not be blank")
     @Column(nullable = false)
-    private int zipCode;
+    private String zipCode;
 
 
     public Address(){
 
     }
-    public Address(String street,String city, String state,int zipCode){
+    public Address(String street,String city, String state,String zipCode){
         this.street = street;
         this.city = city;
         this.state = state;
@@ -67,11 +67,11 @@ public class Address {
         this.state = state;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

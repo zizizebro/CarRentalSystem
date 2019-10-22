@@ -1,11 +1,15 @@
 package mum.edu.cs.cs425.project.carrentalsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Car {
-    @Id@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotBlank(message = "Make cannot be blank")
     @Column(nullable = false)
@@ -16,13 +20,17 @@ public class Car {
     @NotBlank(message = "Plate Number cannot be blank")
     @Column(nullable = false)
     private String plateNumber;
-    @NotBlank(message = "Price cannot be blank")
+   /* @Digits(integer =3 , fraction = 2, message = "Price cannot be blank")*/
     @Column(nullable = false)
     private double rentPrice;
     @NotBlank(message = "Model cannot be blank")
     private String model;
     @NotBlank(message = "Color cannot be blank")
     private String color;
+
+    @Lob
+    @JsonIgnore
+    private byte[] carPic;
 
     @OneToOne
     private CarStatus carStatus;
@@ -46,7 +54,7 @@ public class Car {
         this.rentPrice = rentPrice;
     }
 
-    public Car(String carMake, String carBrand, String plateNumber, CarStatus carStatus, double rentPrice, String model, String color) {
+    public Car(String carMake, String carBrand, String plateNumber, CarStatus carStatus, double rentPrice, String model, String color, byte[] carPic) {
         this.carMake = carMake;
         this.carBrand = carBrand;
         this.plateNumber = plateNumber;
@@ -54,6 +62,7 @@ public class Car {
         this.rentPrice = rentPrice;
         this.model = model;
         this.color = color;
+        this.carPic = carPic;
     }
 
     public Long getId() {
@@ -110,5 +119,13 @@ public class Car {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public byte[] getCarPic() {
+        return carPic;
+    }
+
+    public void setCarPic(byte[] carPic) {
+        this.carPic = carPic;
     }
 }

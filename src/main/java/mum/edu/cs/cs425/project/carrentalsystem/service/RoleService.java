@@ -12,4 +12,5 @@ public interface RoleService {
     public List<Role> findAll();
     public Role findById(Long id);
     public void deleteById(Long id);
+    public Role findByRole(String role);
 }

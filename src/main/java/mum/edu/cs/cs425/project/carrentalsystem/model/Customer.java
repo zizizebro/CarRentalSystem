@@ -20,15 +20,14 @@ public class Customer {
     @NotBlank(message = "Last Name Can Not Be Empty")
     @Column(nullable = false)
     private String lastName;
-    @NotBlank(message = "Email Address Can Not Be Empty")
-    @Column(nullable = false)
-    private String email;
-    @NotBlank(message = "Date of Birth can not be Empty")
+//    @NotBlank(message = "Email Address Can Not Be Empty")
+//    @Column(nullable = false)
+//    private String email;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
-    @NotBlank(message = "Gender  Can Not Be Empty")
-    @Column(nullable = false)
-    private String gender;
+//    @NotBlank(message = "Gender  Can Not Be Empty")
+//    @Column(nullable = false)
+//    private String gender;
     @NotBlank(message = "License Number  Can Not Be Empty")
     @Column(nullable = false)
     private String licenceNumber;
@@ -41,19 +40,16 @@ public class Customer {
     @OneToOne(cascade = CascadeType.ALL)
     private Credential credential;
 
-
-
     public Customer(){
 
     }
-
-    public Customer(String firstName, String lastName, String email, LocalDate dob, String gender, String licenceNumber, Address address, Credential credential){
+    public Customer(String firstName, String lastName, LocalDate dob, String licenceNumber, Address address, Credential credential){
 
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+//        this.email = email;
         this.dob = dob;
-        this.gender = gender;
+//        this.gender = gender;
         this.licenceNumber = licenceNumber;
         this.address = address;
         this.credential = credential;
@@ -83,13 +79,13 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public LocalDate getDob() {
         return dob;
@@ -98,14 +94,14 @@ public class Customer {
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+//
+//    public String getGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(String gender) {
+//        this.gender = gender;
+//    }
 
     public String getLicenceNumber() {
         return licenceNumber;
@@ -129,5 +125,18 @@ public class Customer {
 
     public void setCredential(Credential credential) {
         this.credential = credential;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
+                ", licenceNumber='" + licenceNumber + '\'' +
+                ", address=" + address +
+                ", credential=" + credential +
+                '}';
     }
 }

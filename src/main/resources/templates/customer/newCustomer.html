@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Customer</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a style="padding-right: 2em;" class="navbar-brand" href="/">Customer sign Up form
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link" href="/cust/list">customers</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <span style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
+            <!--<a style="color: #ffffff; margin-right: 0em;" class="nav-link" href="#">John Doe</a>-->
+            <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
+            <a href="#" class="btn btn-secondary">Sign In</a>
+        </form>
+    </div>
+    </a>
+</nav>
+
+<div class="container">
+
+
+    <hr>
+
+    <p class="h4 mb-4">Save Customer</p>
+
+    <form action="#" th:action="@{/cust/save}"
+          th:object="${customers}" method="POST">
+
+        <input type="text" th:field="*{id}"
+               class="form-control mb-4 col-4" placeholder="Employee ID">
+
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="First name">
+
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 col-4" placeholder="Last name">
+
+        <input type="date" th:field="*{dob}"
+               class="form-control mb-4 col-4" placeholder="DAte of Birth ">
+
+
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 col-4" placeholder="Email">
+
+
+
+        <!--<select name="supplier" id="supplier" class="form-control" required="required">
+            <option value="">Select a Gender</option>
+            <option th:each="customers : ${customers}" th:value="${customers.id}" th:text="${customers.gender}"></option>
+        </select>
+-->
+        <input type="text" th:field="*{gender}"
+               class="form-control mb-4 col-4" placeholder="Gender">
+
+        <input type="text" th:field="*{licenceNumber}"
+               class="form-control mb-4 col-4" placeholder=" licenceNumber">
+
+       <div class="col-md-6">
+
+        <input type="text" th:field="*{address.street}"
+               class="form-control mb-4 col-4" placeholder="Street">
+
+        <input type="text" th:field="*{address.city}"
+               class="form-control mb-4 col-4" placeholder="City">
+
+        <input type="text" th:field="*{address.state}"
+               class="form-control mb-4 col-4" placeholder="State">
+
+        <input type="text" th:field="*{address.zipCode}"
+               class="form-control mb-4 col-4" placeholder="Zip Code">
+
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+        </div>
+    </form>
+
+    <hr>
+    <a th:href="@{/customers/list}">Back to Customers List</a>
+
+</div>
+</body>
+
+</html>

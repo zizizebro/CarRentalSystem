@@ -76,4 +76,14 @@ public class Credential {
         this.roles = roles;
     }
 
+    @Override
+    public String toString() {
+        return "Credential{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                '}';
+    }
 }

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cust/cust.css}"/>
+    <title>The Golden Dome Market - SRM - Add a New car</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form id="carForm" method="post" action="/cust/save"  th:object="${customer}">
+        <fieldset>
+            <legend>New car Form</legend>
+            <div class="container" style="margin-top: 1em;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!--                        <input type="hidden" name="Id" th:field="${customer.id}" />-->
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <small><span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                         class="alert alert-danger"></span></small>
+                            <input id="firstName" name="firstName" type="text" class="form-control"
+                                   th:field="*{firstName}" required autofocus="autofocus">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                  class="alert alert-danger"></span>
+                            <input id="lastName" name="lastName" type="text" class="form-control"
+                                   th:field="*{lastName}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <span th:if="${#fields.hasErrors('credential.email')}" th:errors="*{credential.email}"
+                                  class="alert alert-danger"></span>
+                            <input id="email" name="email" type="text" class="form-control"
+                                   th:field="*{credential.email}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <span th:if="${#fields.hasErrors('credential.password')}" th:errors="*{credential.password}"
+                                  class="alert alert-danger"></span>
+                            <input id="password" name="password" type="password" class="form-control"
+                                   th:field="*{credential.password}" required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dob">Dob</label>
+                            <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"
+                                  class="alert alert-danger"></span>
+                            <input id="dob" name="dob" type="date" class="form-control" th:field="*{dob}"
+                                   required="required">
+                        </div>
+
+
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label for="gender">Gender</label>-->
+                        <!--                                                        <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"-->
+                        <!--                                                              class="alert alert-danger"></span>-->
+                        <!--                            <select name="gender" id="gender" class="form-control" required="required">-->
+                        <!--                                <option value="">Select a Gender</option>-->
+                        <!--                                <option th:each="stat : ${gender}" th:field="${stat.id}" th:text="${stat.gender}"></option>-->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="licenceNumber">DL Number</label>
+                            <span th:if="${#fields.hasErrors('licenceNumber')}" th:errors="*{licenceNumber}"
+                                  class="alert alert-danger"></span>
+                            <input id="licenceNumber" name="licenceNumber" type="text" class="form-control"
+                                   th:field="*{licenceNumber}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Street</label>
+                            <span th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}"
+                                  class="alert alert-danger"></span>
+                            <input id="street" name="street" type="text" class="form-control"
+                                   th:field="*{address.street}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <span th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"
+                                  class="alert alert-danger"></span>
+                            <input id="city" name="city" type="text" class="form-control"
+                                   th:field="*{address.city}" required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <span th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"
+                                  class="alert alert-danger"></span>
+                            <input id="state" name="state" type="text" class="form-control"
+                                   th:field="*{address.state}" required="required">
+                        </div>
+
+<!--                        <div class="form-group">-->
+<!--                            <label for="carPic">Car Picture</label>-->
+<!--                            <div class="col-md-4">-->
+<!--                                <input id="carPic" name="carPic" class="input-file" type="file" required="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="zipCode">Zip Code</label>
+                            <span th:if="${#fields.hasErrors('address.zipCode')}" th:errors="*{address.zipCode}"
+                                  class="alert alert-danger"></span>
+                            <input id="zipCode" name="zipCode" type="text" class="form-control"
+                                   aria-describedby="dateSuppliedHelp" th:field="*{address.zipCode}"
+                                   required="required">
+<!--                            <small id="dateSuppliedHelp" class="form-text text-muted">Enter a valid Date.</small>-->
+                        </div>
+                        <div style="float:right;">
+                            <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">
+                                Reset
+                            </button>
+                            <a href="/srm/secured/car/browse" class="btn btn-outline-warning"
+                               style="margin-right: 2em;">Cancel</a>
+                            <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Add car</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+<br/>
+<br/>
+<th:block layout:fragment="footer"/>
+
+</body>
+</html>

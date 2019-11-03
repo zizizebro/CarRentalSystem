@@ -3,7 +3,6 @@ package mum.edu.cs.cs425.project.carrentalsystem.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -11,17 +10,17 @@ public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank(message = "pick_up date can not be empty")
-    @DateTimeFormat(pattern = "MM-DD_YYYY")
+    //@NotBlank(message = "pick_up date can not be empty")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickupDate;
-    @NotBlank(message = "return_Date can not be empty")
-    @DateTimeFormat(pattern = "MM-DD_YYYY")
+    //@NotBlank(message = "return_Date can not be empty")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     Car car;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     Customer customer;
 
 
@@ -74,5 +73,16 @@ public class Rental {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "id=" + id +
+                ", pickupDate=" + pickupDate +
+                ", returnDate=" + returnDate +
+                ", car=" + car +
+                ", customer=" + customer +
+                '}';
     }
 }

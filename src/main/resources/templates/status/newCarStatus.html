@@ -1,40 +1,13 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-    <title>Save CarStatus</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/car/car.css}" />
+    <title>Car Rental - Add Car Status</title>
 </head>
-
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a style="padding-right: 2em;" class="navbar-brand" href="/">CarStatus sign Up form
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
-                <a class="nav-link" href="/status/list">carStatus</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <span style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
-            <!--<a style="color: #ffffff; margin-right: 0em;" class="nav-link" href="#">John Doe</a>-->
-            <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
-            <a href="#" class="btn btn-secondary">Sign In</a>
-        </form>
-    </div>
-    </a>
-</nav>
-
+<body> <!--onload="document.querySelector('#carNumber').focus();"-->
+<th:block layout:fragment="content">
 <div class="container">
 
 
@@ -44,7 +17,7 @@
 
     <form action="#" th:action="@{/status/save}"
           th:object="${carStatuses}" method="POST">
-
+        <input type="hidden" name="id" th:field="*{id}" />
         <input type="text" th:field="*{status}"
                class="form-control mb-4 col-4" placeholder="Status Of Car">
 
@@ -66,6 +39,11 @@
     <a th:href="@{/status/list}">Back to CarStatus List</a>
 
 </div>
+</th:block>
+<br/>
+<br/>
+<th:block layout:fragment="footer"/>
+
 </body>
 
 </html>

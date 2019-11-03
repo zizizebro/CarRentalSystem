@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/car/car.css}" />
+    <title>Car Rental - New Role</title>
+</head>
+<body> <!--onload="document.querySelector('#carNumber').focus();"-->
+<th:block layout:fragment="content">
+    <form id="carForm" method="post" action="/roles/new"  th:object="${roles}">
+        <fieldset>
+            <legend>New Role Form</legend>
+            <div class="container" style="margin-top: 1em;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" name="id" th:field="*{id}" />
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <small><span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
+                                         class="alert alert-danger"></span></small>
+                            <input id="role" name="role" type="text" class="form-control" th:field="*{role}" required autofocus="autofocus">
+                        </div>
+
+
+                        <div style="float:right;">
+                            <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">Reset</button>
+                            <a href="/roles/list/" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
+                            <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Add Roles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+<br/>
+<br/>
+<th:block layout:fragment="footer"/>
+
+</body>
+</html>
+

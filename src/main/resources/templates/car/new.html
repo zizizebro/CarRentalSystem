@@ -4,7 +4,7 @@
       layout:decorate="~{common/masterlayout}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/car/car.css}" />
-    <title>The Golden Dome Market - SRM - Add a New car</title>
+    <title>Car Rental - Add Car</title>
 </head>
 <body> <!--onload="document.querySelector('#carNumber').focus();"-->
 <th:block layout:fragment="content">
@@ -69,19 +69,6 @@
                                 <input id="carPic" name="carPic" class="input-file" type="file" required="">
                             </div>
                         </div>
-<!--                        <div class="form-group">-->
-<!--                            <label for="carPic">Car Picture</label>-->
-<!--                            <div class="col-md-4">-->
-<!--                                <input id="carPic" name="carPic" class="input-file" type="file" required="">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="dateSupplied">Date supplied</label>-->
-<!--                            <span th:if="${#fields.hasErrors('dateSupplied')}" th:errors="*{dateSupplied}"-->
-<!--                                  class="alert alert-danger"></span>-->
-<!--                            <input id="dateSupplied" name="dateSupplied" type="date" class="form-control" aria-describedby="dateSuppliedHelp" th:value="${car.dateSupplied}" required="required">-->
-<!--                            <small id="dateSuppliedHelp" class="form-text text-muted">Enter a valid Date.</small>-->
-<!--                        </div>-->
                         <div style="float:right;">
                             <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">Reset</button>
                             <a href="/srm/secured/car/browse" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>

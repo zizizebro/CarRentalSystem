@@ -3,9 +3,11 @@ package mum.edu.cs.cs425.project.carrentalsystem.controller;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import mum.edu.cs.cs425.project.carrentalsystem.model.Car;
 import mum.edu.cs.cs425.project.carrentalsystem.model.CarStatus;
+import mum.edu.cs.cs425.project.carrentalsystem.repositary.CarRepository;
 import mum.edu.cs.cs425.project.carrentalsystem.service.CarService;
 import mum.edu.cs.cs425.project.carrentalsystem.service.CarStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,15 +37,25 @@ public class CarController {
     @Autowired
     CarService carService;
 
+    @Autowired
+    CarRepository carRepository;
+
     @GetMapping("/list")
-    public String getAllCars(Model model) {
+    public String getAllCars(Model model, Principal principal) {
+        System.out.println("CURRENT USER: " + principal.getName());
         model.addAttribute("cars", carService.findAll());
         return "/car/list";
     }
 
-    @GetMapping("/api/list")
+    @GetMapping("/api/all")
     public @ResponseBody List<Car> allCarsApi(){
         return carService.findAll();
+    }
+
+    @GetMapping("/api/available")
+    public @ResponseBody List<Car> availableCarsApi(){
+        CarStatus carStatus = carStatusService.findById(1L);
+        return carRepository.findByCarStatusIs(carStatus);
     }
 
     @GetMapping("/new")
@@ -85,8 +98,11 @@ public class CarController {
         return "redirect:/car/list";
     }
     @GetMapping(value="/available/list")
-    public ModelAndView availableCars() {
-        List<Car> availableCars = carService.findAll();
+    public ModelAndView availableCars(Model model) {
+
+        CarStatus carStatus = carStatusService.findById(1L);
+
+        List<Car> availableCars = carRepository.findByCarStatusIs(carStatus);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("availableCars", availableCars);
         modelAndView.setViewName("car/rentallist");
@@ -97,10 +113,8 @@ public class CarController {
         return modelAndView;
     }
 
-    @GetMapping("/update")
-    public String showFormForUpdate(@RequestParam("id") Long id, Model theModel) {
 
-        // get the car from the service
+       /* // get the car from the service
         Car theCar = carService.findById(id);
 
         // set Car as a model attribute to pre-populate the form
@@ -109,9 +123,9 @@ public class CarController {
 
         // send over to our form
         return "car/new";
-    }
+    }*/
 
-    @GetMapping("car/delete")
+    @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id) {
 
         // delete the Car

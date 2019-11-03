@@ -31,10 +31,18 @@ public class Credential {
     @Column(name = "enabled")
     private boolean enabled = true;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    public Credential(){}
+
+    public Credential( String email,  String password, boolean enabled, Set<Role> roles) {
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;

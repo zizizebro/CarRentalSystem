@@ -14,7 +14,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a style="padding-right: 1em;" class="navbar-brand" href="/srm/home">Car Rental</a>
+    <a style="padding-right: 1em;" class="navbar-brand" href="/home">Car Rental</a>
     <!--<span style="color: #ffffff;"> &nbsp; | &nbsp;</span>-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,43 +26,49 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>-->
-            <li class="nav-item" style="border-left: white 1px solid; padding-left: 1em; padding-right: 1em;">
-                <a class="nav-link" href="/srm/secured/product/browse">Products</a>
-            </li>
-            <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em;" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/srm/secured/supplier/browse">Suppliers</a>
-            </li>
-            <li class="nav-item dropdown">
+            <!--            <li class="nav-item" style="border-left: white 1px solid; padding-left: 1em; padding-right: 1em;">-->
+            <!--                <a class="nav-link" href="/srm/secured/product/browse">Products</a>-->
+            <!--            </li>-->
+            <!--            <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em;" sec:authorize="isAuthenticated()">-->
+            <!--                <a class="nav-link" href="/srm/secured/supplier/browse">Suppliers</a>-->
+            <!--            </li>-->
+            <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                 <a class="nav-link dropdown-toggle" href="#" id="carDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Car
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/car/new">New</a>
-                    <a class="dropdown-item" href="/car/list">Edit</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/car/available/list">Something else here</a>
+                    <span sec:authorize="hasAuthority('ADMIN')" >
+                        <a  class="dropdown-item" href="/car/new">Add Car</a>
+                        <a class="dropdown-item" href="/car/list">Edit Car</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/status/register">Add Status</a>
+                        <a class="dropdown-item" href="/status/list">Edit Status</a>
+                        <div class="dropdown-divider"></div>
+                    </span>
+                    <!--                    <span sec:authorize="hasAuthority('CUSTOMER')">-->
+                    <a sec:authorize="hasAuthority('CUSTOMER')" class="dropdown-item" href="/car/available/list">Available Cars</a>
+                    <!--                    </span>-->
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')" >
                 <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/">New</a>
-                    <a class="dropdown-item" href="/car/list">Edit</a>
+                    <a class="dropdown-item" href="/admin/account/new">Add</a>
+                    <a class="dropdown-item" href="/admin/account/list">Edit</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Deactivate</a>
+                    <a class="dropdown-item" href="/admin/activate">Activate</a>
+                    <a class="dropdown-item" href="/admin/deactivate">Deactivate</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')" >
                 <a class="nav-link dropdown-toggle" href="#" id="roleDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Role
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/">New</a>
-                    <a class="dropdown-item" href="/car/list">Edit</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="/roles/new">Add</a>
+                    <a class="dropdown-item" href="/roles/list">Edit</a>
                 </div>
             </li>
         </ul>
@@ -70,9 +76,9 @@
             <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
             <span sec:authorize="!isAuthenticated()">
             <a href="/cust/register" class="btn btn-success pull-right" style="margin-right: 1em;">Signup</a>
-            <a href="#" class="btn btn-success pull-right" style="margin-right: 1em;">Log In</a>
+            <a href="/login" class="btn btn-success pull-right" style="margin-right: 1em;">Log In</a>
             </span>
-            <a href="#" class="btn btn-success pull-right" sec:authorize="isAuthenticated()">Log Out</a>
+            <a href="/logout" class="btn btn-success pull-right" sec:authorize="isAuthenticated()">Log Out</a>
         </form>
     </div>
 </nav>

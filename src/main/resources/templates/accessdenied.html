@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/car/car.css}" />
+    <title>Car Rental - Access Denied</title>
+</head>
+<body> <!--onload="document.querySelector('#carNumber').focus();"-->
+<th:block layout:fragment="content">
+<h1>403</h1>
+<h2>Sorry, you do not have permission to view this page.</h2>
+
+</th:block>
+
+
+<th:block layout:fragment="footer"/>
+</body>
+</html>

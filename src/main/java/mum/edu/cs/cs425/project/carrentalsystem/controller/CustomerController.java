@@ -30,13 +30,6 @@ public class CustomerController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @GetMapping("/list")
-    public String getAllCustomer(Model model){
-        List<Customer> customers = (List<Customer>) customerService.findAll();
-        model.addAttribute("customers", customers);
-
-        return "customer/customerList";
-    }
 
     @GetMapping("/register")
     public String customerForm(Model model){
@@ -45,11 +38,7 @@ public class CustomerController {
         return "customer/new";
     }
 
-//    @GetMapping("/save")
-//    public String getSave(Model theModel){
-//        theModel.addAttribute("customers",new Customer());
-//        return "customer/newCustomer";
-//    }
+
 
     @PostMapping("/save")
     public String save(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult){
@@ -78,7 +67,7 @@ public class CustomerController {
         theModel.addAttribute("customer", customer);
 
         // send over to our form
-        return "customer/newCustomer";
+        return "customer/new";
     }
 
     @GetMapping("/delete")

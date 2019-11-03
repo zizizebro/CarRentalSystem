@@ -14,4 +14,7 @@ public interface CredentialService extends UserDetailsService {
     public List<Credential> findAll();
     public Credential findById(Long id);
     public void deleteById(Long id);
+    Credential findByEmail(String email);
+    List<Credential> findByEnabledTrue();
+    List<Credential> findByEnabledFalse();
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" layout:decorate="~{common/masterlayout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" th:href="@{/css/car/car.css}" type="text/css"/>
     <title>Car Rental - Login</title>
@@ -9,23 +10,48 @@
 <body>
 <th:block layout:fragment="content">
 <div class="container">
-    <h3>Welcome to Car Rental Website</h3>
-    <hr/>
-    <div style="font-size: 1em">
-        To create and manage <a href="/srm/secured/product/browse">Customer</a> and
-        <a href="/srm/secured/supplier/browse">CarStatus</a>, please first make sure to read the please first make sure to read the
-        instructions and key points provided below. And then click the
-        appropriate menu item, located on the menu-bar above.<br/><br/>
+<!--    <center><h2>Welcome to Markon Car Rental</h2></center>-->
+<!--    <hr/>-->
+<!--    <div style="font-size: 1em">-->
+<!--        To create and manage <a href="/srm/secured/product/browse">Customer</a> and-->
+<!--        <a href="/srm/secured/supplier/browse">CarStatus</a>, please first make sure to read the please first make sure to read the-->
+<!--        instructions and key points provided below. And then click the-->
+<!--        appropriate menu item, located on the menu-bar above.<br/><br/>-->
 
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text
-        ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not
-        only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum.
+<!--        Lorem Ipsum is simply dummy text of the printing and typesetting-->
+<!--        industry. Lorem Ipsum has been the industry's standard dummy text-->
+<!--        ever since the 1500s, when an unknown printer took a galley of type-->
+<!--        and scrambled it to make a type specimen book. It has survived not-->
+<!--        only five centuries, but also the leap into electronic typesetting,-->
+<!--        remaining essentially unchanged. It was popularised in the 1960s with-->
+<!--        the release of Letraset sheets containing Lorem Ipsum passages, and-->
+<!--        more recently with desktop publishing software like Aldus PageMaker-->
+<!--        including versions of Lorem Ipsum.-->
+<!--    </div>-->
+
+    <div class="col-md-12 text-center mt-5">
+        <h1 class="brand-heading">Welcome to Markon Car Rental</h1>
+        <hr/>
+        <span  sec:authorize="!isAuthenticated()">
+            <p class="intro-text">Please login first to use features.</p>
+            <a href="/login" class="btn btn-primary btn-raised btn-lg page-scroll">
+                Login
+            </a>
+         </span>
+    </div>
+    <div class="col-md-12 text-center mt-5">
+        <div class="col-md-6 text-center float-left mt-2">
+            <h1 class="brand-heading">Create Car</h1>
+            <p> Add, edit and delete cars </p>
+            <h1 class="brand-heading">Create Users</h1>
+            <p> Create, activate and deactivate accounts </p>
+        </div>
+        <div class="col-md-6 text-center float-left mt-2">
+            <h1 class="brand-heading">Rent Car</h1>
+            <p> View available cars and Book </p>
+            <h1 class="brand-heading">REST API</h1>
+            <p> Exposes REST Endpoints</p>
+        </div>
     </div>
 </div>
 </th:block>

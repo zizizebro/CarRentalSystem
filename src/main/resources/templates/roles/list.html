@@ -3,15 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{common/masterlayout}">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/car/car.css}" />
-    <title>Car Rental - All Cars</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/roles/role.css}" />
+    <title>Car Rental - All Roles</title>
 </head>
 <body>
 <th:block layout:fragment="content">
     <div>
-        <span style="font-size: 1.5em">List of All Cars</span>
+        <span style="font-size: 1.5em">List of Roles</span>
         <span style="float:right;">
-                <a class="btn btn-outline-primary btn-lg" href="/car/new">Add a New Car</a>
+                <a class="btn btn-outline-primary btn-lg" href="/roles/new">Add a New Role</a>
             </span>
     </div>
     <p>&nbsp;</p>
@@ -19,41 +19,34 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Make</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Model</th>
-            <th scope="col">Color</th>
-            <th scope="col">Plate Number</th>
-            <th scope="col">Rent Price</th>
-            <th scope="col">Status</th>
-
+            <th scope="col">Roles</th>
+            <th scope="col">Action</th>
         </tr>
 
         </thead>
         <tbody>
-
+        <!-- Alternative non-obstrusive js solution for <tr onclick>:
+            HTML markup: <tr data-href="some-url">
+            JS function using JQuery: $('tr[data-href]').on("click", function() {
+                                        document.location = $(this).data('href');
+                                    });
+         -->
         <!--<tr class="datarow" th:each="product,iterStat : ${products}" th:onclick="@{document.location='/prodmgmt/products/edit/{productId}'(productId=${product.productId})}">-->
-        <tr class="datarow" th:each="car,iterStat : ${cars}" th:onclick="@{document.location='#'}">
+        <tr class="datarow" th:each="r,iterStat : ${roles}" th:onclick="@{document.location='#'}">
             <th scope="row" th:text="${iterStat.count}+'.'"></th>
-            <td th:text="${car.carMake}"></td>
-            <td th:text="${car.carBrand}"></td>
-            <td th:text="${car.model}"></td>
-            <td th:text="${car.color}"></td>
-            <td th:text="${car.plateNumber}"></td>
-            <td th:text="${#numbers.formatCurrency(car.rentPrice)}"></td>
-            <td th:text="${car.carStatus.status}"></td>
+            <td th:text="${r.role}"></td>
 
             <td>
 
 
-            <a th:href="@{/car/update(id=${car.id})}"
+            <a th:href="@{/roles/update(id=${r.id})}"
                class="btn btn-success btn-sm">
                 Update
             </a>
             <!-- Add "delete" button/link -->
-            <a th:href="@{/car/delete(id=${car.id})}"
+            <a th:href="@{/roles/delete(id=${r.id})}"
                class="btn btn-danger btn-sm"
-               onclick="if (!(confirm('Are you sure you want to delete this Car?'))) return false">
+               onclick="if (!(confirm('Are you sure you want to delete this Roles?'))) return false">
                 Delete
             </a>
             </td>

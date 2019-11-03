@@ -1,5 +1,6 @@
 package mum.edu.cs.cs425.project.carrentalsystem.service.serviceimpl;
 
+import mum.edu.cs.cs425.project.carrentalsystem.model.Credential;
 import mum.edu.cs.cs425.project.carrentalsystem.model.Customer;
 import mum.edu.cs.cs425.project.carrentalsystem.repositary.CustomerRepository;
 import mum.edu.cs.cs425.project.carrentalsystem.service.CustomerService;
@@ -32,5 +33,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteById(Long id) {
         customerRepository.deleteById(id);
+    }
+
+    @Override
+    public Customer findByCredential(Credential credential) {
+        return customerRepository.findByCredential(credential);
     }
 }

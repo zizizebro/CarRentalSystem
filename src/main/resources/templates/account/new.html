@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cust/cust.css}"/>
+    <title>Car Rental - New Account</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form id="carForm" method="post" action="/admin/account/new"  th:object="${credential}">
+        <fieldset>
+            <legend>New Account Form</legend>
+            <div class="container" style="margin-top: 1em;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" name="id" th:field="*{id}" />
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                  class="alert alert-danger"></span>
+                            <input id="email" name="email" type="text" class="form-control"
+                                   th:field="*{email}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                  class="alert alert-danger"></span>
+                            <input id="password" name="password" type="password" class="form-control"
+                                   th:field="*{password}" required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="enabled">Enabled</label>
+                            <span th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}"
+                                  class="alert alert-danger"></span>
+                            <input id="enabled" name="enabled" type="checkbox" class="form-control" th:field="*{enabled}">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <!--                            <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"-->
+                            <!--                                  class="alert alert-danger"></span>-->
+                            <select name="role" id="role" class="form-control" required="required">
+                                <option value="">Select a Role</option>
+                                <option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.role}"></option>
+                            </select>
+                        </div>
+                        <div style="float:right;">
+                            <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">
+                                Reset
+                            </button>
+                            <a href="/" class="btn btn-outline-warning"
+                               style="margin-right: 2em;">Cancel</a>
+                            <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+<br/>
+<br/>
+<th:block layout:fragment="footer"/>
+
+</body>
+</html>

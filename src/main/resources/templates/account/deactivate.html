@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/car/car.css}" />
+    <title>Car Rental - Deactivate Account</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div>
+        <span style="font-size: 1.5em">List of Active Accounts</span>
+<!--        <span style="float:right;">-->
+<!--                <a class="btn btn-outline-primary btn-lg" href="/admin/account/new">Add a New Account</a>-->
+<!--        </span>-->
+    </div>
+    <p>&nbsp;</p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Enabled</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <!-- Alternative non-obstrusive js solution for <tr onclick>:
+            HTML markup: <tr data-href="some-url">
+            JS function using JQuery: $('tr[data-href]').on("click", function() {
+                                        document.location = $(this).data('href');
+                                    });
+         -->
+        <!--<tr class="datarow" th:each="product,iterStat : ${products}" th:onclick="@{document.location='/prodmgmt/products/edit/{productId}'(productId=${product.productId})}">-->
+        <tr class="datarow" th:each="act,iterStat : ${activeAccounts}" th:onclick="@{document.location='#'}">
+            <th scope="row" th:text="${iterStat.count}+'.'"></th>
+            <td th:text="${act.email}"></td>
+            <td th:text="${act.enabled}"></td>
+            <td th:text="${act.roles.stream().findFirst().get()}"></td>
+            <td>
+
+            <a th:href="@{/admin/account/deactivate(id=${act.id})}"
+               class="btn btn-danger btn-sm">
+                Deactivate
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
+
+<!--
+<a th:href="@{/pro/update(productId=${productId})}"
+   class="btn btn-info btn-sm">
+    Update
+</a>
+
+&lt;!&ndash;/*@thymesVar id="productId" type=""*/&ndash;&gt;
+<a th:href="@{/emp/delete(productId=${productId})}"
+   class="btn btn-danger btn-sm"
+   onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+    Delete
+</a>
+-->
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>
